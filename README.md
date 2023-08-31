@@ -69,60 +69,60 @@
         external: false
     
     services:
-      hbbs1:
-        container_name: hbbs1
+      hbbs_shara:
+        container_name: hbbs_shara
         ports:
           - 21115:21115
           - 21116:21116
           - 21116:21116/udp
           - 21118:21118
         image: rustdesk/rustdesk-server:latest
-        command: hbbs -r server_1.example.com:21117
+        command: hbbs -r rust1desk1test.387cyhdxr43iuosed98po.com:21117 -k _
         volumes:
           - ./data:/root
         networks:
           - rustdesk-net
         depends_on:
-          - hbbr1
+          - hbbr_shara
         restart: unless-stopped
     
-      hbbr1:
-        container_name: hbbr1
+      hbbr_shara:
+        container_name: hbbr_shara
         ports:
           - 21117:21117
           - 21119:21119
         image: rustdesk/rustdesk-server:latest
-        command: hbbr
+        command: hbbr -k _
         volumes:
           - ./data:/root
         networks:
           - rustdesk-net
         restart: unless-stopped
     
-      hbbs2:
-        container_name: hbbs2
+    hbbs_neshara:
+        container_name: hbbs_neshara
         ports:
           - 21125:21125
           - 21126:21126
           - 21126:21126/udp
           - 21128:21128
         image: rustdesk/rustdesk-server:latest
-        command: hbbs -r server_2.example.com:21127
+        command: hbbs -r rust1desk1test.387cyhdxr43iuosed98po.com:21127 -k _
         volumes:
           - ./data:/root
         networks:
           - rustdesk-net
         depends_on:
-          - hbbr2
+          - hbbr_neshara
         restart: unless-stopped
     
-      hbbr2:
-        container_name: hbbr2
+      hbbr_neshara:
+        container_name: hbbr_neshara
         ports:
           - 21127:21127
           - 21129:21129
         image: rustdesk/rustdesk-server:latest
-        command: hbbr
+        command: hbbr -k _
         volumes:
           - ./data:/root
         networks:
