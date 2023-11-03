@@ -1,0 +1,36 @@
+version: '3'
+
+networks:
+  rustdesk-net:
+    external: false
+
+services:
+  hbbs_2:
+    container_name: hbbs_2
+    ports:
+      - 21125:21125
+      - 21126:21126
+      - 21126:21126/udp
+      - 21128:21128
+    image: rustdesk/rustdesk-server:latest
+    command: hbbs -r rustdesk2test.oraclesiebelcrm.com:21127 -k _
+    volumes:
+      - ./data:/root
+    networks:
+      - rustdesk-net
+    depends_on:
+      - hbbr_2
+    restart: unless-stopped
+
+  hbbr_2:
+    container_name: hbbr_2
+    ports:
+      - 21127:21127
+      - 21129:21129
+    image: rustdesk/rustdesk-server:latest
+    command: hbbr -k _
+    volumes:
+      - ./data:/root
+    networks:
+      - rustdesk-net
+    restart: unless-stopped
